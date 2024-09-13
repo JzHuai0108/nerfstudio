@@ -25,7 +25,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import open3d as o3d
-import pymeshlab
 import torch
 from jaxtyping import Float
 from rich.progress import BarColumn, Progress, TaskProgressColumn, TextColumn, TimeRemainingColumn
@@ -66,6 +65,7 @@ def get_mesh_from_pymeshlab_mesh(mesh: pymeshlab.Mesh) -> Mesh:  # type: ignore
 
 def get_mesh_from_filename(filename: str, target_num_faces: Optional[int] = None) -> Mesh:
     """Get a Mesh from a filename."""
+    import pymeshlab
     ms = pymeshlab.MeshSet()  # type: ignore
     ms.load_new_mesh(filename)
     if target_num_faces is not None:
